@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan - Seputar Deret</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'VT323', monospace;
+            overflow-x: hidden; 
+
+            /* 👇 Pindahkan background ke body langsung 👇 */
+            background-image: url('../gambar/rafli/gambar_ghefira/background3.jpeg'); 
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        /* Container Utama sekarang cuma buat ngatur posisi (Flexbox) */
+        .background-container {
+            width: 100%; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Kotak Soal */
+        .question-box {
+            background-color: rgba(245, 218, 179, 0.85); /* Warna krem transparan */
+            width: 80%;
+            max-width: 700px;
+            min-height: 200px;
+            border-radius: 20px;
+            padding: 30px;
+            font-size: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Grid Pilihan Ganda (2x2) */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Kolom */
+            gap: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .option-btn {
+            background-color: rgba(245, 235, 200, 0.9);
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 28px;
+            font-family: 'VT323', monospace;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .option-btn:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* --- POPUP NILAI --- */
+        .popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Gelap di latar belakang */
+            display: none; /* Disembunyikan dulu */
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .popup-box {
+            background-color: rgba(235, 205, 175, 0.95);
+            width: 80%;
+            max-width: 650px;
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        /* Bagian Gambar Rubah (Kiri) */
+        .popup-left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .popup-left img {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* Bagian Info Nilai (Kanan) */
+        .popup-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 20px;
+            font-size: 26px;
+        }
+
+        .info-baris {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .kotak-warna {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .warna-hijau { background-color: #00ff00; }
+        .warna-merah { background-color: #ff0000; }
+
+        .nilai-teks {
+            text-align: center;
+            font-size: 50px;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Tombol di Popup */
+        .popup-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .btn-popup {
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-family: 'VT323', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .btn-popup:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        /* Responsif HP */
+        @media (max-width: 600px) {
+            .question-box { font-size: 24px; padding: 20px; }
+            .option-btn { font-size: 20px; padding: 15px; }
+            .popup-box { flex-direction: column; text-align: center; padding: 20px;}
+            .popup-left img { max-width: 120px; margin-bottom: 20px;}
+            .popup-right { padding-left: 0; font-size: 20px; }
+            .info-baris { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-container">
+        
+        <div id="quiz-area" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="question-box" id="question-text">Memuat soal...</div>
+            
+            <div class="options-grid">
+                <button class="option-btn" onclick="cekJawaban(0)" id="btn-0"></button>
+                <button class="option-btn" onclick="cekJawaban(1)" id="btn-1"></button>
+                <button class="option-btn" onclick="cekJawaban(2)" id="btn-2"></button>
+                <button class="option-btn" onclick="cekJawaban(3)" id="btn-3"></button>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popup">
+            <div class="popup-box">
+                <div class="popup-left">
+                    <img src="../gambar/rafli/gambar_ghefira/rubah.png" alt="Karakter Rubah">
+                </div>
+                <div class="popup-right">
+                    <div class="info-baris">
+                        <span class="kotak-warna warna-hijau"></span> 
+                        <span style="color: green;">jumlah soal benar: <span id="text-benar">0</span></span>
+                    </div>
+                    <div class="info-baris">
+                        <span class="kotak-warna warna-merah"></span> 
+                        <span style="color: red;">jumlah soal salah: <span id="text-salah">0</span></span>
+                    </div>
+                    
+                    <div class="nilai-teks">nilai <br><span id="text-skor">100</span></div>
+                    
+                    <div class="popup-buttons">
+                        <button class="btn-popup" onclick="location.reload()">latihan</button>
+                        <a href="index.html" class="btn-popup">kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Data Soal (Bisa kamu ganti soal-soalnya di sini)
+        const bankSoal = [
+            {
+                pertanyaan: "Nilai dari i^2025 adalah...",
+                pilihan: ["1", "-1", "i", "-i"],
+                jawabanBenar: 2 // Index 0 berarti pilihan "10"
+            },
+            {
+                pertanyaan: "Hasil dari (3+2i)(3-2i) adalah...",
+                pilihan: ["5", "9", "13", "1"],
+                jawabanBenar: 2 // Index 2 berarti pilihan "25"
+            },
+            {
+                pertanyaan: "Hasil dari (3+4i) + (5-2i) adalah...",
+                pilihan: ["8+2i", "8-6i", "2+2i", "8+6i"],
+                jawabanBenar: 0
+            },
+            {
+                pertanyaan: "Hasil dari (7+3i) - (2-5i) adalah...?",
+                pilihan: ["5-2i", "5+8i", "9-2i", "9+8i"],
+                jawabanBenar: 1
+            },
+            {
+                pertanyaan: "Hasil dari (2+3i)(1-2i)/ 1+i",
+                pilihan: ["4-i", "1-5i", "5-i", "-1-5i"],
+                jawabanBenar: 3
+            }
+        ];
+
+        let soalTerpilih = [];
+        let indexSoalSekarang = 0;
+        let jumlahBenar = 0;
+        let jumlahSalah = 0;
+        const poinPerSoal = 20;
+
+        // Fungsi untuk mengacak urutan soal (Randomize)
+        function acakSoal() {
+            // Menggandakan array bankSoal agar aslinya tidak rusak
+            soalTerpilih = [...bankSoal]; 
+            // Mengacak array
+            soalTerpilih.sort(() => Math.random() - 0.5);
+        }
+
+        // Fungsi untuk menampilkan soal ke layar
+        function tampilkanSoal() {
+            const dataSoal = soalTerpilih[indexSoalSekarang];
+            document.getElementById('question-text').innerText = dataSoal.pertanyaan;
+            
+            // Menampilkan pilihan ganda
+            for(let i = 0; i < 4; i++) {
+                document.getElementById(`btn-${i}`).innerText = dataSoal.pilihan[i];
+            }
+        }
+
+        // Fungsi saat tombol pilihan diklik
+        function cekJawaban(indexPilihan) {
+            const dataSoal = soalTerpilih[indexSoalSekarang];
+            
+            // Cek apakah jawaban benar
+            if (indexPilihan === dataSoal.jawabanBenar) {
+                jumlahBenar++;
+            } else {
+                jumlahSalah++;
+            }
+
+            // Lanjut ke soal berikutnya atau selesaikan
+            indexSoalSekarang++;
+            
+            if (indexSoalSekarang < soalTerpilih.length) {
+                tampilkanSoal(); // Tampilkan soal selanjutnya
+            } else {
+                tampilkanPopup(); // Kuis selesai
+            }
+        }
+
+        // Fungsi untuk memunculkan hasil akhir
+        function tampilkanPopup() {
+            // Sembunyikan area kuis
+            document.getElementById('quiz-area').style.display = 'none';
+            
+            // Hitung skor
+            const skorTotal = jumlahBenar * poinPerSoal;
+            
+            // Masukkan data ke dalam popup
+            document.getElementById('text-benar').innerText = jumlahBenar;
+            document.getElementById('text-salah').innerText = jumlahSalah;
+            document.getElementById('text-skor').innerText = skorTotal;
+            
+            // Munculkan popup
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // JALANKAN SAAT HALAMAN DIBUKA
+        window.onload = function() {
+            acakSoal();
+            tampilkanSoal();
+        };
+    </script>
+</body>
+</html>
