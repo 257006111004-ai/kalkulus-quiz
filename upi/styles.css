@@ -1,0 +1,164 @@
+/* Mengatur ulang margin dan padding bawaan browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    /* Menggunakan font pixel jika tersedia, atau monospace sebagai cadangan */
+    font-family: 'VT323', monospace; 
+}
+
+/* Container utama untuk background dan posisi elemen */
+.background-container {
+    width: 100%;
+    height: 100vh; /* Mengisi seluruh tinggi layar */
+    
+    /* 👇 GANTI NAMA FILE FOTO DI SINI SESUAI DENGAN FOTO DI LAPTOP KAMU 👇 */
+    background-image: url('../gambar/rafli/gambar_lurfi/backgroung.jpeg');
+    
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden; /* Mencegah munculnya scrollbar saat gambar memulai animasi dari luar layar */
+    
+    /* Flexbox untuk memposisikan menu di tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Susunan untuk 2 kotak link ppt */
+.menu-center {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar kotak */
+    width: 90%;
+    max-width: 400px; /* Lebar maksimal kotak di versi desktop */
+    z-index: 10; /* Memastikan tombol tetap bisa diklik jika tertumpuk gambar */
+}
+
+/* Desain kotak "link ppt" */
+.btn-link {
+    background-color: rgba(255, 255, 255, 0.7); /* Warna putih transparan */
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
+    font-size: 32px;
+    border-radius: 15px; /* Ujung kotak membulat */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-link:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.02); /* Sedikit membesar saat disorot mouse */
+}
+
+/* Desain kotak "latihan" di kanan bawah */
+.btn-latihan {
+    position: absolute; /* Diposisikan absolut terhadap background-container */
+    bottom: 30px;
+    right: 30px;
+    background-color: rgba(245, 235, 210, 0.9); /* Warna krem sesuai gambar */
+    color: black;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 28px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.btn-latihan:hover {
+    background-color: rgba(255, 245, 220, 1);
+    transform: scale(1.05);
+}
+
+/* --- PENGATURAN WADAH GAMBAR ANIMASI FADE IN & BERGERAK --- */
+.anim-image {
+    position: absolute;
+    opacity: 0; /* Mulai dari tidak terlihat */
+    z-index: 5;
+}
+
+.anim-image img {
+    width: 150px; /* Atur lebar gambar di sini sesuai selera */
+    height: auto;
+    border-radius: 10px; 
+}
+
+/* Pengaturan Gambar Kanan Atas */
+.top-right {
+    animation: gerakKananAtas 2.5s ease-out forwards;
+}
+
+/* Pengaturan Gambar Kiri Bawah */
+.bottom-left {
+    animation: gerakKiriBawah 2.5s ease-out forwards;
+}
+
+/* --- KEYFRAMES (LINTASAN ANIMASI) --- */
+
+/* Animasi dari luar ujung kanan atas menuju ke arah tengah */
+@keyframes gerakKananAtas {
+    0% {
+        opacity: 0;
+        top: -50px;   /* Mulai dari luar layar atas */
+        right: -50px; /* Mulai dari luar layar kanan */
+    }
+    100% {
+        opacity: 1;
+        top: 22%;     /* Titik berhenti (semakin besar angkanya, semakin ke tengah) */
+        right: 25%;   /* Titik berhenti */
+    }
+}
+
+/* Animasi dari luar ujung kiri bawah menuju ke arah tengah */
+@keyframes gerakKiriBawah {
+    0% {
+        opacity: 0;
+        bottom: -50px; /* Mulai dari luar layar bawah */
+        left: -50px;   /* Mulai dari luar layar kiri */
+    }
+    100% {
+        opacity: 1;
+        bottom: 22%;   /* Titik berhenti */
+        left: 25%;     /* Titik berhenti */
+    }
+}
+
+/* --- PENGATURAN RESPONSIVE UNTUK HP (MOBILE) --- */
+@media (max-width: 600px) {
+    .btn-link {
+        padding: 15px;
+        font-size: 24px;
+    }
+    
+    .btn-latihan {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        font-size: 20px;
+    }
+
+    .anim-image img {
+        width: 100px; /* Gambar mengecil di HP agar tidak menutupi tombol penuh */
+    }
+    
+    /* Mengubah titik berhenti khusus untuk layar HP agar pas */
+    @keyframes gerakKananAtas {
+        0% { opacity: 0; top: -30px; right: -30px; }
+        100% { opacity: 1; top: 15%; right: 10%; }
+    }
+
+    @keyframes gerakKiriBawah {
+        0% { opacity: 0; bottom: -30px; left: -30px; }
+        100% { opacity: 1; bottom: 15%; left: 10%; }
+    }
+}
