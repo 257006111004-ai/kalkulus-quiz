@@ -222,7 +222,10 @@
                         <span style="color: red;">jumlah soal salah: <span id="text-salah">0</span></span>
                     </div>
                     
-                    <div class="nilai-teks">nilai <br><span id="text-skor">100</span></div>
+                    <div class="nilai-teks" style="font-size: 35px; margin-top: 0; margin-bottom: -10px;">
+    Hebat, <span id="nama-hasil" style="color: #ff6600;">Pemain</span>!
+</div>
+<div class="nilai-teks">nilai <br><span id="text-skor">100</span></div>
                     
                     <div class="popup-buttons">
                         <button class="btn-popup" onclick="location.reload()">latihan</button>
@@ -311,12 +314,19 @@
         }
 
         // Fungsi untuk memunculkan hasil akhir
+        // Fungsi untuk memunculkan hasil akhir
         function tampilkanPopup() {
             // Sembunyikan area kuis
             document.getElementById('quiz-area').style.display = 'none';
             
             // Hitung skor
             const skorTotal = jumlahBenar * poinPerSoal;
+            
+            // 👇 TAMBAHKAN KODE INI UNTUK MENGAMBIL NAMA 👇
+            const namaPemain = sessionStorage.getItem("namaPemain");
+            if (namaPemain) { // Jika namanya ada
+                document.getElementById('nama-hasil').innerText = namaPemain;
+            }
             
             // Masukkan data ke dalam popup
             document.getElementById('text-benar').innerText = jumlahBenar;

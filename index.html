@@ -286,15 +286,18 @@
             loginOverlay.style.display = 'none';
         });
 
-        // Fungsi: Saat tombol "Masuk" diklik (Tambahan fungsionalitas)
+        // Fungsi: Saat tombol "Masuk" diklik
         submitNameBtn.addEventListener('click', function() {
             const nama = playerNameInput.value.trim();
             if(nama === "") {
                 alert("Silakan masukkan nama Anda terlebih dahulu!");
             } else {
+                // 👇 TAMBAHKAN BARIS INI UNTUK MENYIMPAN NAMA 👇
+                sessionStorage.setItem("namaPemain", nama);
+                
                 alert("Selamat datang, " + nama + "! Pembelajaran siap dimulai.");
-                // Di sini kamu bisa menambahkan kode untuk pindah ke halaman game aslinya
-                 window.location.href = "level.html";
+                // Pastikan ini mengarah ke file HTML tempat kuis berada
+                window.location.href = "level.html"; 
             }
         });
     </script>
