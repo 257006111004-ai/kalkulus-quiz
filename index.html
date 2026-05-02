@@ -3,18 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Presentasi</title>
+    <title>Calculus Journey - Main Menu</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* === CSS GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            overflow: hidden;
+        }
+
+        /* === WADAH UTAMA & BACKGROUND === */
+        .game-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('gambar/rafli/menu.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* === NAVIGASI ATAS === */
+        /* === NAVIGASI ATAS === */
+.top-nav {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start;
+    padding: 20px 30px;
+    width: 100%;
+    position: relative; /* TAMBAHKAN BARIS INI */
+    z-index: 15;        /* NAIKKAN Z-INDEX LEBIH TINGGI DARI CENTER-CONTENT */
+}
+
+        /* Tombol About Us */
+        .about-btn {
+            background-color: #f8f9fa;
+            border: 4px solid #333;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-family: inherit;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #555;
+            transition: transform 0.1s;
+            text-decoration: none;
+        }
+
+        .about-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* === KONTEN TENGAH (Menu Utama) === */
+        .center-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            z-index: 10;
+            margin-top: -150px; /* Disesuaikan agar pas */
+        }
+
+        .title-container {
+            width: 80%;
+            max-width: 700px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .game-title {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0px 8px 4px rgba(0,0,0,0.4));
+        }
+
+        /* Tombol Start */
+        .start-btn {
+            background-color: #ffffff;
+            border: 5px solid #2b2b2b;
+            border-radius: 40px;
+            padding: 12px 60px;
+            font-size: 38px;
+            font-family: inherit;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #2b2b2b;
+            transition: transform 0.1s, box-shadow 0.1s;
+            position: relative;
+        }
+
+        .start-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .start-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #2b2b2b;
+        }
+
+        /* === POPUP LOGIN (MODAL) === */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Background gelap transparan */
+            display: none; /* Disembunyikan secara default */
+            justify-content: center;
+            align-items: center;
+            z-index: 20; /* Harus lebih tinggi dari elemen lain agar tampil di atas */
+            font-family: sans-serif; /* Mengembalikan font default untuk teks biasa di popup */
+        }
+
+        .modal-box {
+            width: 90%;
+            max-width: 550px;
+            background-color: rgba(245, 248, 250, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-out; /* Tambahan animasi muncul */
+        }
+
+        /* Animasi Muncul Popup */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            background-color: #6a6a6a;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: #d1d1d1;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            color: #ffffff;
+        }
+
+        .modal-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-title {
+            font-family: 'VT323', monospace;
+            font-size: 42px;
+            color: #3b2f2f;
+            letter-spacing: 2px;
+        }
+
+        .modal-subtitle {
+            font-size: 20px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: none;
+            font-size: 18px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            outline: none;
+        }
+
+        .name-input::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            border-radius: 15px;
+            border: none;
+            background-color: #6de05c;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            background-color: #5bcf4b;
+        }
+
+        .submit-btn:active {
+            transform: translateY(2px);
+        }
+    </style>
 </head>
 <body>
-    <div class="background-container">
-        <div class="menu-center">
-            <a href="halaman2.html" class="btn-link">Link Youtube</a>
-            <a href="https://drive.google.com/file/d/1I7uO0ofy9awwJVsTY4fwrbvxPt3shSqe/view?usp=sharing" class="btn-link">link ppt</a>
-        </div>
 
-        <a href="latihan.html" class="btn-latihan">latihan</a>
+    <div class="game-container">
+        
+        <header class="top-nav">
+            <a href="kita.html" class="about-btn">About Us</a>
+        </header>
+
+        <main class="center-content">
+            <div class="title-container">
+              <img src="gambar/rafli/latso-deret.png" alt="Calculus Journey" class="game-title">
+            </div>
+
+            <button class="start-btn" id="startBtn">
+                START
+            </button>
+        </main>
+
     </div>
+
+    <div class="overlay" id="loginOverlay">
+        <div class="modal-box">
+            
+            <div class="modal-header">
+                <button class="modal-close-btn" id="closeModalBtn">&#10005;</button> 
+            </div>
+
+            <div class="modal-content">
+                <h2 class="modal-title">Selamat Datang !</h2>
+                <p class="modal-subtitle">masukan nama lengkap anda<br>untuk melanjutkan</p>
+                
+                <input type="text" class="name-input" id="playerName" placeholder="Masukan nama">
+                
+                <button class="submit-btn" id="submitNameBtn">Masuk</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Mengambil elemen-elemen dari HTML
+        const startBtn = document.getElementById('startBtn');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const submitNameBtn = document.getElementById('submitNameBtn');
+        const playerNameInput = document.getElementById('playerName');
+
+        // Fungsi: Saat tombol START diklik, tampilkan popup login
+        startBtn.addEventListener('click', function() {
+            loginOverlay.style.display = 'flex'; // Mengubah display dari 'none' menjadi 'flex'
+        });
+
+        // Fungsi: Saat tombol X di popup diklik, sembunyikan popup kembali
+        closeModalBtn.addEventListener('click', function() {
+            loginOverlay.style.display = 'none';
+        });
+
+        // Fungsi: Saat tombol "Masuk" diklik (Tambahan fungsionalitas)
+        submitNameBtn.addEventListener('click', function() {
+            const nama = playerNameInput.value.trim();
+            if(nama === "") {
+                alert("Silakan masukkan nama Anda terlebih dahulu!");
+            } else {
+                alert("Selamat datang, " + nama + "! Pembelajaran siap dimulai.");
+                // Di sini kamu bisa menambahkan kode untuk pindah ke halaman game aslinya
+                 window.location.href = "level.html";
+            }
+        });
+    </script>
+
 </body>
 </html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Journey - Pilih Materi</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        /* === CSS GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            background-image: url('gambar/rafli/menu.png'); /* Warna latar abu-abu terang */
+            /* overflow: hidden;     */
+            background-size: cover;
+        }
+
+        /* === WADAH UTAMA === */
+        .level-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === HEADER (Bar Abu-abu Gelap) === */
+        .top-bar {
+            background-color: #8a8a8a; /* Warna bar atas */
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* Tombol Silang (X) */
+        .back-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 2px 2px 0 #000; /* Efek pixel pada tombol X */
+            transition: transform 0.1s;
+        }
+
+        .back-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* === AREA GRID (4 Kotak Menu) === */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Kolom */
+            gap: 50px 70px; /* Jarak antar kotak (atas-bawah 50px, kiri-kanan 70px) */
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === DESAIN KARTU/KOTAK MATERI === */
+        .card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Proporsi kotak memanjang */
+            border-radius: 15px;
+            /* background-color: #cccccc; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            
+            /* Efek bayangan kotak di kiri-bawah khas pixel art */
+            box-shadow: -15px 15px 0px #a3a3a3;
+            transition: transform 0.1s, box-shadow 0.1s;
+
+            /* Aturan background agar gambar pas */
+            background-size: cover;
+            background-position: center;
+            /* background-repeat: no-repeat; */
+        }
+
+        /* Efek saat kartu diklik (seolah-olah ditekan ke bawah) */
+        .card:active {
+            transform: translate(-10px, 10px);
+            box-shadow: -5px 5px 0px #a3a3a3;
+        }
+
+        /* Tulisan di dalam kartu */
+        .card-title {
+            font-size: 52px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-align: center;
+            padding: 0 10px;
+            
+            /* Membuat outline hitam tebal di sekitar teks */
+            text-shadow: 
+                -3px -3px 0 #000,  
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                 0px  4px 0 #000; /* Tambahan bayangan bawah */
+        }
+
+        /* === GANTI BACKGROUND MASING-MASING KARTU DI SINI === */
+        #card-matrix {
+            background-image: url('gambar/rafli/');
+            background-color: #88d4c9;/* Warna cadangan jika gambar belum ada */
+        }
+
+        #card-deret {
+            background-image: url('gambar/rafli/backround2.png');
+            background-color: #5b8cda;
+        }
+
+        #card-imajiner {
+            background-image: url('gambar/rafli/gambar_ghefira/background1.jpeg');
+            background-color: #fca947;
+        }
+
+        #card-vector {
+            background-image: url('gambar/rafli/gambar rangga/Background Winter.jpeg');
+            background-color: #4dbbea;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="level-container">
+        
+        <header class="top-bar">
+            <button class="back-btn" id="backBtn">&#10005;</button>
+        </header>
+
+        <main class="main-content">
+            <div class="grid-container">
+                
+                <div class="card" id="card-matrix">
+                    <span class="card-title">MATRIX</span>
+                </div>
+
+                <div class="card" id="card-deret">
+                    <span class="card-title">DERET</span>
+                </div>
+
+                <div class="card" id="card-imajiner">
+                    <span class="card-title">BILANGAN<br>IMAJINER</span>
+                </div>
+
+                <div class="card" id="card-vector">
+                    <span class="card-title">VECTOR</span>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // Fitur Tombol Kembali (X)
+        const backBtn = document.getElementById('backBtn');
+        backBtn.addEventListener('click', function() {
+            // Ini akan membawa user kembali ke halaman sebelumnya (misal kembali ke menu utama)
+        window.location.href = 'index.html';
+            alert("Kembali ke menu sebelumnya!"); 
+        });
+
+        // Fitur klik untuk masing-masing kartu
+        const cardMatrix = document.getElementById('card-matrix');
+        const cardDeret = document.getElementById('card-deret');
+        const cardImajiner = document.getElementById('card-imajiner');
+        const cardVector = document.getElementById('card-vector');
+
+        cardMatrix.addEventListener('click', function() {
+            alert("Memulai level: MATRIX");
+            // window.location.href = 'matrix-level.html';
+        });
+
+        cardDeret.addEventListener('click', function() {
+            alert("Memulai level: DERET");
+            window.location.href = 'ateng.html';
+        });
+
+        cardImajiner.addEventListener('click', function() {
+            alert("Memulai level: BILANGAN IMAJINER");
+            window.location.href = 'hal_ghefira/index.html';
+        });
+
+        cardVector.addEventListener('click', function() {
+            alert("Memulai level: VECTOR");
+            window.location.href = 'vector-rangga/index.html';
+        });
+    </script>
+
+</body>
+</html>
