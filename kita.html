@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Journey - About Us</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        /* === CSS GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            background-color: #4eb3e7; /* Warna cadangan biru langit */
+            color: white;
+            /* Teks bayangan hitam agar terbaca di segala warna background */
+            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
+        }
+
+        /* === WADAH UTAMA / BACKGROUND PANJANG === */
+        .about-container {
+            width: 100%;
+            min-height: 100vh; /* Minimal setinggi layar */
+            
+            /* GANTI BACKGROUND PANJANG DI SINI */
+            background-image: url('gambar/bouts.png'); 
+            background-size: 100% auto; /* Lebar penuh, tinggi menyesuaikan proporsi */
+            background-position: top center;
+            background-repeat: no-repeat;
+            
+            padding: 60px 20px 100px 20px; /* Jarak atas, kanan, bawah, kiri */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-size: cover;
+        }
+
+        /* === TOMBOL KEMBALI (X) MELAYANG === */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100; /* Selalu di atas */
+            text-shadow: 2px 2px 0 #000;
+            transition: transform 0.1s;
+        }
+
+        .back-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* === BAGIAN TEKS ATAS === */
+        .intro-section {
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .intro-title {
+            font-size: 48px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* === BAGIAN TIM DEVELOPER === */
+        .team-section {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px; /* Jarak antar anggota tim */
+            margin-bottom: 100px;
+        }
+
+        .team-title {
+            font-size: 52px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        /* Kartu Anggota */
+        .member-card {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Bingkai Foto / Avatar */
+        .avatar-container {
+            width: 150px; /* Sesuaikan ukuran avatar */
+            flex-shrink: 0;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: auto;
+            /* Opsional: filter untuk mempertegas pixel art */
+            filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+        }
+
+        /* Info Teks Anggota */
+        .member-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .member-info p {
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        /* === FOOTER === */
+        .footer-section {
+            text-align: center;
+            margin-top: auto; /* Mendorong ke paling bawah */
+        }
+
+        .footer-title {
+            font-size: 60px;
+            letter-spacing: 4px;
+        }
+
+        /* Media Query untuk HP (Responsive) */
+        @media (max-width: 600px) {
+            .member-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .intro-title { font-size: 36px; }
+            .intro-text { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-btn" id="closeAboutBtn">&#10005;</button>
+
+    <div class="about-container">
+        
+        <section class="intro-section">
+            <h1 class="intro-title">About us and our website!</h1>
+            <p class="intro-text">
+                Game merupakan media interaktif yang dirancang untuk memberikan pengalaman bermain yang menyenangkan. 
+                Di sini kita dapat belajar sambil bermain dengan mengikuti petualangan, menyelesaikan rintangan, 
+                dan menggunakan logika untuk menyelesaikan masalah.
+            </p>
+            <p class="intro-text">
+                Calculus Journey adalah sarana edukasi berbasis game yang inovatif... (Ganti teks ini sesuai kebutuhanmu).
+            </p>
+        </section>
+
+        <section class="team-section">
+            <h2 class="team-title">"Developer Team"</h2>
+
+            <div class="member-card">
+                <div class="avatar-container">
+                    <img src="gambar/nathanel.png" alt="Avatar">
+                </div>
+                <div class="member-info">
+                    <p>Nama : Nathaniel Firda Putra Lumbantobing</p>
+                    <p>NPM  : 257006111075 </p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="avatar-container">
+                    <img src="gambar/upi.png" alt="Avatar">
+                </div>
+                <div class="member-info">
+                    <p>Nama : Lutfi Fitriani</p>
+                    <p>NPM : 257006111011</p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="avatar-container">
+                    <img src="gambar/ateng.png" alt="Avatar">
+                </div>
+                <div class="member-info">
+                    <p>Nama : Rafli Adriana saputra</p>
+                    <p>NPM : 257006111004 </p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="avatar-container">
+                    <img src="gambar/gegep.png" alt="Avatar">
+                </div>
+                <div class="member-info">
+                    <p>Nama : Ghefira Aulia Azzahra</p>
+                    <p>NPM : 257006111041 </p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="avatar-container">
+                    <img src="gambar/rangga.png" alt="Avatar">
+                </div>
+                <div class="member-info">
+                    <p>Nama : Rangga Rachman Syach</p>
+                    <p>NPM : 257006111050 </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="footer-section">
+            <h2 class="footer-title">"Terimakasih"</h2>
+        </section>
+
+    </div>
+
+    <script>
+        // Logika untuk kembali ke menu utama saat X ditekan
+        const closeAboutBtn = document.getElementById('closeAboutBtn');
+        closeAboutBtn.addEventListener('click', function() {
+            // Arahkan kembali ke file index.html
+            window.location.href = 'index.html'; 
+        });
+    </script>
+
+</body>
+</html>
