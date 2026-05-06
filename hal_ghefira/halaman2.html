@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     
     <style>
-        /* Mengatur ulang margin */
+        /* Mengatur margin */
         * {
             margin: 0;
             padding: 0;
@@ -24,17 +24,17 @@
             width: 100%;
             height: 100vh;
             
-            /* 👇 GANTI NAMA BACKGROUND DI SINI 👇 */
+            /* GANTI BACKGROUND */
             background-image: url('../gambar/rafli/gambar_ghefira/background2.jpeg'); 
             
             background-size: cover;
-            background-position: top; /* Supaya awan atas nggak kepotong */
+            background-position: top; 
             background-repeat: no-repeat;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden; /* Supaya kalau gambar kebesaran nggak muncul scroll */
+            overflow: hidden; 
         }
 
         /* Tombol Kembali di kiri atas */
@@ -60,22 +60,21 @@
 
         /* Judul Halaman */
         .judul {
-            color: white; /* Warna biru muda mirip di gambar */
+            color: white; 
             font-size: 50px;
             margin-top: 30px;
             letter-spacing: 3px;
-            /* Memberikan efek bayangan supaya teks menonjol */
             text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
             z-index: 5;
             text-align: center;
         }
 
-        /* Wadah abu-abu untuk frame Youtube */
+        /* Wadah untuk frame Youtube */
         .youtube-box {
-            background-color: rgba(226, 238, 242, 0.9); /* Warna abu-abu muda */
+            background-color: rgba(226, 238, 242, 0.9); 
             width: 80%;
             max-width: 650px;
-            aspect-ratio: 16/9; /* Menjaga rasio layar memanjang */
+            aspect-ratio: 16/9; 
             border-radius: 20px;
             margin-top: 30px;
             display: flex;
@@ -92,7 +91,7 @@
             border-radius: 10px;
         }
 
-        /* Wadah Karakter (Spongebob, Patrick, Mr Crab) di Kiri Bawah */
+        /* Wadah Karakter di Kiri Bawah */
         .karakter-kiri {
             position: absolute;
             bottom: 0;
@@ -108,7 +107,7 @@
             display: block;
         }
 
-        /* Wadah Rumah Nanas di Kanan Bawah */
+        /* Wadah Rumah di Kanan Bawah */
         .rumah-kanan {
             position: absolute;
             bottom: 0;
@@ -128,7 +127,7 @@
         @media (max-width: 600px) {
             .judul {
                 font-size: 35px;
-                margin-top: 70px; /* Diturunkan sedikit agar tidak nabrak tombol kembali */
+                margin-top: 70px; 
             }
             .btn-kembali {
                 padding: 8px 15px;
@@ -151,9 +150,6 @@
     <iframe src="https://www.youtube.com/embed/Uf9s6uIadjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-        <!-- <div class="karakter-kiri">
-            <img src="gambar/rafli/spongebobt-removebg-preview.png" alt="Karakter SpongeBob dkk">
-        </div> -->
 
         <div class="rumah-kanan">
             <img src="../gambar/rafli/gambar_ghefira/rubah.png" alt="Rumah Nanas">

@@ -28,15 +28,15 @@
         /* === WADAH UTAMA / BACKGROUND PANJANG === */
         .about-container {
             width: 100%;
-            min-height: 100vh; /* Minimal setinggi layar */
+            min-height: 100vh;
             
-            /* GANTI BACKGROUND PANJANG DI SINI */
+            /* BACKGROUND PANJANG */
             background-image: url('gambar/bouts.png'); 
-            background-size: 100% auto; /* Lebar penuh, tinggi menyesuaikan proporsi */
+            background-size: 100% auto; 
             background-position: top center;
             background-repeat: no-repeat;
             
-            padding: 60px 20px 100px 20px; /* Jarak atas, kanan, bawah, kiri */
+            padding: 60px 20px 100px 20px; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -54,7 +54,7 @@
             font-size: 36px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 100; /* Selalu di atas */
+            z-index: 100; 
             text-shadow: 2px 2px 0 #000;
             transition: transform 0.1s;
         }
@@ -90,7 +90,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px; /* Jarak antar anggota tim */
+            gap: 60px; 
             margin-bottom: 100px;
         }
 
@@ -110,14 +110,14 @@
 
         /* Bingkai Foto / Avatar */
         .avatar-container {
-            width: 150px; /* Sesuaikan ukuran avatar */
+            width: 150px; 
             flex-shrink: 0;
         }
 
         .avatar-container img {
             width: 100%;
             height: auto;
-            /* Opsional: filter untuk mempertegas pixel art */
+            /* Filter Shadow */
             filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
         }
 
@@ -136,7 +136,7 @@
         /* === FOOTER === */
         .footer-section {
             text-align: center;
-            margin-top: auto; /* Mendorong ke paling bawah */
+            margin-top: auto; 
         }
 
         .footer-title {
@@ -144,7 +144,6 @@
             letter-spacing: 4px;
         }
 
-        /* Media Query untuk HP (Responsive) */
         @media (max-width: 600px) {
             .member-card {
                 flex-direction: column;
@@ -161,21 +160,25 @@
 
     <div class="about-container">
         
+        <!-- Text Pembuka di about us -->
         <section class="intro-section">
             <h1 class="intro-title">About us and our website!</h1>
             <p class="intro-text">
-                Game merupakan media interaktif yang dirancang untuk memberikan pengalaman bermain yang menyenangkan. 
-                Di sini kita dapat belajar sambil bermain dengan mengikuti petualangan, menyelesaikan rintangan, 
-                dan menggunakan logika untuk menyelesaikan masalah.
+              Kami menghadirkan sebuah platform pembelajaran kalkulus yang dirancang tidak hanya untuk membantu memahami konsep, tetapi juga untuk mengubah cara pandang terhadap kalkulus itu sendiri. Bagi banyak orang, kalkulus sering kali terasa rumit, kaku, dan bahkan menimbulkan stres.
+
+              Melalui proyek ini, kami ingin mematahkan anggapan tersebut dengan pendekatan yang lebih ringan, interaktif, dan menyenangkan. Di dalamnya, pengguna dapat mengakses berbagai materi kalkulus yang disajikan dalam bentuk video pembelajaran & slide Materi.
+
+
             </p>
             <p class="intro-text">
-                Calculus Journey adalah sarana edukasi berbasis game yang inovatif... (Ganti teks ini sesuai kebutuhanmu).
+                Kami mengusung konsep visual berbasis pixel sebagai identitas utama platform ini.   Gaya pixel dipilih bukan hanya untuk estetika, tetapi juga untuk menciptakan suasana belajar yang santai dan tidak menekan.
             </p>
         </section>
 
         <section class="team-section">
             <h2 class="team-title">"Developer Team"</h2>
-
+            
+            <!-- Anggota tim -->
             <div class="member-card">
                 <div class="avatar-container">
                     <img src="gambar/nathanel.png" alt="Avatar">
@@ -229,13 +232,13 @@
         </section>
 
         <section class="footer-section">
-            <h2 class="footer-title">"Terimakasih"</h2>
+            <h2 class="footer-title">"Thank You"</h2>
         </section>
 
     </div>
 
     <script>
-        // Logika untuk kembali ke menu utama saat X ditekan
+        // Tombol X (kembali)
         const closeAboutBtn = document.getElementById('closeAboutBtn');
         closeAboutBtn.addEventListener('click', function() {
             // Arahkan kembali ke file index.html

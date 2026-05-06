@@ -229,125 +229,123 @@
                     
                     <div class="popup-buttons">
                         <button class="btn-popup" onclick="location.reload()">latihan</button>
-                        <a href="index.html" class="btn-popup">kembali</a>
+                        <a href="../level.html" class="btn-popup">kembali</a>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+<script>
+   // ================= DATA SOAL =================
+const bankSoal = [
+    {
+        pertanyaan: "Nilai dari i^2025 adalah...",
+        pilihan: ["1", "-1", "i", "-i"],
+        jawabanBenar: 2
+    },
+    {
+        pertanyaan: "Hasil dari (3+2i)(3-2i) adalah...",
+        pilihan: ["5", "9", "13", "1"],
+        jawabanBenar: 2
+    },
+    {
+        pertanyaan: "Hasil dari (3+4i) + (5-2i) adalah...",
+        pilihan: ["8+2i", "8-6i", "2+2i", "8+6i"],
+        jawabanBenar: 0
+    },
+    {
+        pertanyaan: "Hasil dari (7+3i) - (2-5i) adalah...?",
+        pilihan: ["5-2i", "5+8i", "9-2i", "9+8i"],
+        jawabanBenar: 1
+    },
+    {
+        pertanyaan: "Hasil dari (2+3i)(1-2i)/ 1+i",
+        pilihan: ["4-i", "1-5i", "5-i", "-1-5i"],
+        jawabanBenar: 3
+    }
+];
 
-    <script>
-        // Data Soal (Bisa kamu ganti soal-soalnya di sini)
-        const bankSoal = [
-            {
-                pertanyaan: "Nilai dari i^2025 adalah...",
-                pilihan: ["1", "-1", "i", "-i"],
-                jawabanBenar: 2 // Index 0 berarti pilihan "10"
-            },
-            {
-                pertanyaan: "Hasil dari (3+2i)(3-2i) adalah...",
-                pilihan: ["5", "9", "13", "1"],
-                jawabanBenar: 2 // Index 2 berarti pilihan "25"
-            },
-            {
-                pertanyaan: "Hasil dari (3+4i) + (5-2i) adalah...",
-                pilihan: ["8+2i", "8-6i", "2+2i", "8+6i"],
-                jawabanBenar: 0
-            },
-            {
-                pertanyaan: "Hasil dari (7+3i) - (2-5i) adalah...?",
-                pilihan: ["5-2i", "5+8i", "9-2i", "9+8i"],
-                jawabanBenar: 1
-            },
-            {
-                pertanyaan: "Hasil dari (2+3i)(1-2i)/ 1+i",
-                pilihan: ["4-i", "1-5i", "5-i", "-1-5i"],
-                jawabanBenar: 3
-            }
-        ];
+let soalTerpilih = [];
+let indexSoalSekarang = 0;
+let jumlahBenar = 0;
+let jumlahSalah = 0;
+const poinPerSoal = 20;
 
-        let soalTerpilih = [];
-        let indexSoalSekarang = 0;
-        let jumlahBenar = 0;
-        let jumlahSalah = 0;
-        const poinPerSoal = 20;
+// ================= ACAK SOAL =================
+function acakSoal() {
+    soalTerpilih = [...bankSoal];
+    soalTerpilih.sort(() => Math.random() - 0.5);
+}
 
-        // Fungsi untuk mengacak urutan soal (Randomize)
-        function acakSoal() {
-            // Menggandakan array bankSoal agar aslinya tidak rusak
-            soalTerpilih = [...bankSoal]; 
-            // Mengacak array
-            soalTerpilih.sort(() => Math.random() - 0.5);
-        }
+// ================= TAMPILKAN SOAL =================
+function tampilkanSoal() {
+    const dataSoal = soalTerpilih[indexSoalSekarang];
 
-        // Fungsi untuk menampilkan soal ke layar
-       // Fungsi untuk memunculkan hasil akhir
-        function tampilkanPopup() {
-            // Sembunyikan area kuis
-            document.getElementById('quiz-area').style.display = 'none';
-            
-            // Hitung skor
-            const skorTotal = jumlahBenar * poinPerSoal;
-            
-            // 👇 TAMBAHKAN KODE INI UNTUK MENGAMBIL NAMA 👇
-            const namaPemain = sessionStorage.getItem("namaPemain");
-            if (namaPemain) { // Jika namanya ada
-                document.getElementById('nama-hasil').innerText = namaPemain;
-            }
-            
-            // Masukkan data ke dalam popup
-            document.getElementById('text-benar').innerText = jumlahBenar;
-            document.getElementById('text-salah').innerText = jumlahSalah;
-            document.getElementById('text-skor').innerText = skorTotal;
-            
-            // Munculkan popup
-            document.getElementById('popup').style.display = 'flex';
-        }
+    document.getElementById('question-text').innerText = dataSoal.pertanyaan;
 
-        // Fungsi saat tombol pilihan diklik
-        function cekJawaban(indexPilihan) {
-            const dataSoal = soalTerpilih[indexSoalSekarang];
-            
-            // Cek apakah jawaban benar
-            if (indexPilihan === dataSoal.jawabanBenar) {
-                jumlahBenar++;
-            } else {
-                jumlahSalah++;
-            }
-
-            // Lanjut ke soal berikutnya atau selesaikan
-            indexSoalSekarang++;
-            
-            if (indexSoalSekarang < soalTerpilih.length) {
-                tampilkanSoal(); // Tampilkan soal selanjutnya
-            } else {
-                tampilkanPopup(); // Kuis selesai
-            }
-        }
-
-        // Fungsi untuk memunculkan hasil akhir
-        function tampilkanPopup() {
-            // Sembunyikan area kuis
-            document.getElementById('quiz-area').style.display = 'none';
-            
-            // Hitung skor
-            const skorTotal = jumlahBenar * poinPerSoal;
-            
-            // Masukkan data ke dalam popup
-            document.getElementById('text-benar').innerText = jumlahBenar;
-            document.getElementById('text-salah').innerText = jumlahSalah;
-            document.getElementById('text-skor').innerText = skorTotal;
-            
-            // Munculkan popup
-            document.getElementById('popup').style.display = 'flex';
-        }
-
-        // JALANKAN SAAT HALAMAN DIBUKA
-        window.onload = function() {
-            acakSoal();
-            tampilkanSoal();
+    let pilihanAcak = dataSoal.pilihan.map((teks, index) => {
+        return {
+            teks: teks,
+            indexAsli: index
         };
-    </script>
+    });
+
+    pilihanAcak.sort(() => Math.random() - 0.5);
+
+    pilihanAcak.forEach((item, indexBaru) => {
+        const btn = document.getElementById(`btn-${indexBaru}`);
+        btn.innerText = item.teks;
+
+        btn.onclick = function() {
+            cekJawaban(item.indexAsli);
+        };
+    });
+}
+
+// ================= CEK JAWABAN =================
+function cekJawaban(indexPilihan) {
+    const dataSoal = soalTerpilih[indexSoalSekarang];
+
+    if (indexPilihan === dataSoal.jawabanBenar) {
+        jumlahBenar++;
+    } else {
+        jumlahSalah++;
+    }
+
+    indexSoalSekarang++;
+
+    if (indexSoalSekarang < soalTerpilih.length) {
+        tampilkanSoal();
+    } else {
+        tampilkanPopup();
+    }
+}
+
+// ================= POPUP HASIL =================
+function tampilkanPopup() {
+    document.getElementById('quiz-area').style.display = 'none';
+
+    const skorTotal = jumlahBenar * poinPerSoal;
+
+    // ambil nama dari halaman awal
+    const namaPemain = sessionStorage.getItem("namaPemain");
+    if (namaPemain) {
+        document.getElementById('nama-hasil').innerText = namaPemain;
+    }
+
+    document.getElementById('text-benar').innerText = jumlahBenar;
+    document.getElementById('text-salah').innerText = jumlahSalah;
+    document.getElementById('text-skor').innerText = skorTotal;
+
+    document.getElementById('popup').style.display = 'flex';
+}
+
+// ================= START =================
+window.onload = function() {
+    acakSoal();
+    tampilkanSoal();
+};
+</script>
 </body>
 </html>

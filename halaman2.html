@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     
     <style>
-        /* Mengatur ulang margin */
         * {
             margin: 0;
             padding: 0;
@@ -24,20 +23,19 @@
             width: 100%;
             height: 100vh;
             
-            /* 👇 GANTI NAMA BACKGROUND DI SINI 👇 */
+            /* GANTI BACKGROUND */
             background-image: url('gambar/rafli/backround2.png'); 
             
             background-size: cover;
-            background-position: top; /* Supaya awan atas nggak kepotong */
+            background-position: top; 
             background-repeat: no-repeat;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden; /* Supaya kalau gambar kebesaran nggak muncul scroll */
+            overflow: hidden;
         }
 
-        /* Tombol Kembali di kiri atas */
         .btn-kembali {
             position: absolute;
             top: 20px;
@@ -60,22 +58,22 @@
 
         /* Judul Halaman */
         .judul {
-            color: #d1f5ff; /* Warna biru muda mirip di gambar */
+            color: #d1f5ff; 
             font-size: 50px;
             margin-top: 30px;
             letter-spacing: 3px;
-            /* Memberikan efek bayangan supaya teks menonjol */
+            /* efek bayangan supaya teks menonjol */
             text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
             z-index: 5;
             text-align: center;
         }
 
-        /* Wadah abu-abu untuk frame Youtube */
+        /* Wadah untuk frame Youtube */
         .youtube-box {
             background-color: rgba(226, 238, 242, 0.9); /* Warna abu-abu muda */
             width: 80%;
             max-width: 650px;
-            aspect-ratio: 16/9; /* Menjaga rasio layar memanjang */
+            aspect-ratio: 16/9;
             border-radius: 20px;
             margin-top: 30px;
             display: flex;
@@ -85,14 +83,14 @@
             z-index: 5;
         }
 
-        /* Ukuran frame Youtube di dalam wadah */
+        /* Ukuran frame Youtube */
         .youtube-box iframe {
             width: 95%;
             height: 92%;
             border-radius: 10px;
         }
 
-        /* Wadah Karakter (Spongebob, Patrick, Mr Crab) di Kiri Bawah */
+        /* Wadah Karakter di Kiri Bawah */
         .karakter-kiri {
             position: absolute;
             bottom: 0;
@@ -128,7 +126,7 @@
         @media (max-width: 600px) {
             .judul {
                 font-size: 35px;
-                margin-top: 70px; /* Diturunkan sedikit agar tidak nabrak tombol kembali */
+                margin-top: 70px; 
             }
             .btn-kembali {
                 padding: 8px 15px;
