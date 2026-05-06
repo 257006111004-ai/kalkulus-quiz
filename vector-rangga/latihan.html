@@ -22,14 +22,14 @@
             overflow-x: hidden; 
 
             /* 👇 Pindahkan background ke body langsung 👇 */
-            background-image: url('../gambar/rafli/gambar rangga/Background Winter.jpeg'); 
+            background-image: url('../gambar/rafli/gambar rangga/Background Winter.jpeg'); /* Gambar Backround */
             background-size: cover; 
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
         }
 
-        /* Container Utama sekarang cuma buat ngatur posisi (Flexbox) */
+    
         .background-container {
             width: 100%; 
             min-height: 100vh; 
@@ -42,7 +42,7 @@
 
         /* Kotak Soal */
         .question-box {
-            background-color: rgba(245, 218, 179, 0.85); /* Warna krem transparan */
+            background-color: rgba(245, 218, 179, 0.85); /* Ganti Warna */
             width: 80%;
             max-width: 700px;
             min-height: 200px;
@@ -57,7 +57,7 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
-        /* Grid Pilihan Ganda (2x2) */
+        /* Grid Pilihan Ganda */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr; /* 2 Kolom */
@@ -83,15 +83,15 @@
             transform: scale(1.05);
         }
 
-        /* --- POPUP NILAI --- */
+        /*POPUP NILAI */
         .popup-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Gelap di latar belakang */
-            display: none; /* Disembunyikan dulu */
+            background-color: rgba(0, 0, 0, 0.5); /* Warna hitam transparan */
+            display: none; 
             justify-content: center;
             align-items: center;
             z-index: 100;
@@ -109,7 +109,7 @@
             position: relative;
         }
 
-        /* Bagian Gambar Rubah (Kiri) */
+        /* Bagian Gambar Snowman (Kiri) */
         .popup-left {
             flex: 1;
             display: flex;
@@ -210,7 +210,7 @@
         <div class="popup-overlay" id="popup">
             <div class="popup-box">
                 <div class="popup-left">
-                    <img src="../gambar/rafli/gambar rangga/Snowman 32bit.png" alt="Karakter Rubah">
+                    <img src="../gambar/rafli/gambar rangga/Snowman 32bit.png" alt="Karakter Snowman">
                 </div>
                 <div class="popup-right">
                     <div class="info-baris">
@@ -229,7 +229,7 @@
                     
                     <div class="popup-buttons">
                         <button class="btn-popup" onclick="location.reload()">latihan</button>
-                        <a href="index.html" class="btn-popup">kembali</a>
+                        <a href="../level.html" class="btn-popup">kembali</a>
                     </div>
                 </div>
             </div>
@@ -273,9 +273,9 @@
         let jumlahSalah = 0;
         const poinPerSoal = 20;
 
-        // Fungsi untuk mengacak urutan soal (Randomize)
+        // Berfungsi untuk mengacak urutan soal (Randomize)
         function acakSoal() {
-            // Menggandakan array bankSoal agar aslinya tidak rusak
+            // Menggandakan array bank Soal 
             soalTerpilih = [...bankSoal]; 
             // Mengacak array
             soalTerpilih.sort(() => Math.random() - 0.5);
@@ -292,7 +292,6 @@
             }
         }
 
-        // Fungsi saat tombol pilihan diklik
         function cekJawaban(indexPilihan) {
             const dataSoal = soalTerpilih[indexSoalSekarang];
             
@@ -303,7 +302,7 @@
                 jumlahSalah++;
             }
 
-            // Lanjut ke soal berikutnya atau selesaikan
+            // Button Soal atau Selesai
             indexSoalSekarang++;
             
             if (indexSoalSekarang < soalTerpilih.length) {
@@ -314,7 +313,6 @@
         }
 
         // Fungsi untuk memunculkan hasil akhir
-        // Fungsi untuk memunculkan hasil akhir
         function tampilkanPopup() {
             // Sembunyikan area kuis
             document.getElementById('quiz-area').style.display = 'none';
@@ -322,13 +320,13 @@
             // Hitung skor
             const skorTotal = jumlahBenar * poinPerSoal;
             
-            // 👇 TAMBAHKAN KODE INI UNTUK MENGAMBIL NAMA 👇
+            // Kolom Nama Pemain (diambil dari input nama) 
             const namaPemain = sessionStorage.getItem("namaPemain");
-            if (namaPemain) { // Jika namanya ada
+            if (namaPemain) {
                 document.getElementById('nama-hasil').innerText = namaPemain;
             }
             
-            // Masukkan data ke dalam popup
+            // Tampilkan hasil benar, salah, dan skor
             document.getElementById('text-benar').innerText = jumlahBenar;
             document.getElementById('text-salah').innerText = jumlahSalah;
             document.getElementById('text-skor').innerText = skorTotal;
